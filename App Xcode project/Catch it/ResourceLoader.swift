@@ -18,6 +18,7 @@ class ResourceLoader {
     func loadSound(name:String, fileNamed:String) {
         if let sound = SCNAudioSource(fileNamed: fileNamed) {
             sound.isPositional = false
+            sound.shouldStream = false
             sound.volume = 1
             sound.load()
             sounds[name] = sound

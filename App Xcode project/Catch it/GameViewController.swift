@@ -109,7 +109,7 @@ public class GameViewController: UIViewController {
         setupSounds()
         setupPositions()
         setupActions()
-        
+        loadHighScore()
         startSplashScreen()
     }
     
@@ -170,18 +170,19 @@ public class GameViewController: UIViewController {
     }
     
     func setupSounds() {
-        
         gameMusic = SCNAudioSource(fileNamed: "art.scnassets/Audio/gameMusic.m4a")!
         gameMusic.volume = 0.3
         gameMusic.loops = true
-        gameMusic.shouldStream = true
+        gameMusic.shouldStream = false
         gameMusic.isPositional = false
+        gameMusic.load()
         
         menuMusic = SCNAudioSource(fileNamed: "art.scnassets/Audio/menuMusic.m4a")!
         menuMusic.volume = 0.3
         menuMusic.loops = true
-        menuMusic.shouldStream = true
+        menuMusic.shouldStream = false
         menuMusic.isPositional = false
+        menuMusic.load()
         
         resourceLoader.loadSound(name: "buttonPressed", fileNamed: "art.scnassets/Audio/buttonPressed.m4a")
         resourceLoader.loadSound(name: "miss", fileNamed: "art.scnassets/Audio/miss.m4a")
@@ -413,6 +414,24 @@ public class GameViewController: UIViewController {
         }
     }
     
+    // Loads the high score from UserDefaults
+    func loadHighScore() {
+        if let savedHighScore = UserDefaults.standard.value(forKey: "highScore") as? Int {
+            highScore = savedHighScore
+            highScoreValueText.string = String(format: "%05d", highScore)
+            bestNode.isHidden = false
+        }
+    }
+    
+    // Saves a new high score to UserDefaults
+    func saveHighScoreIfNeeded() {
+        if score > highScore {
+            highScore = score
+            UserDefaults.standard.setValue(highScore, forKey: "highScore")
+            highScoreValueText.string = String(format: "%05d", highScore)
+        }
+    }
+    
     override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         
@@ -460,6 +479,9 @@ public class GameViewController: UIViewController {
             self.levelNode.isHidden = true
             self.levelNode.opacity = 1
         })
+        if bestNode.opacity == 0 && highScore > 0 {
+            bestNode.runAction(fadeIn)
+        }
         gameState = .playing
     }
     
@@ -478,8 +500,7 @@ public class GameViewController: UIViewController {
             resourceLoader.playSound(node: scoreBillboard, name: "highScore")
             bestNode.isHidden = false
             bestNode.runAction(fadeIn)
-            highScore = score
-            highScoreValueText.string = scoreValueText.string
+            saveHighScoreIfNeeded()
             victoryHands.isHidden = false
             victoryHands.runAction(SCNAction.fadeIn(duration: 0.5))
             victoryHands.runAction(SCNAction.scale(to: 2, duration: 0.5))
