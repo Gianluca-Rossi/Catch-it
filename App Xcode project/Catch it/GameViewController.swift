@@ -38,6 +38,7 @@ public class GameViewController: UIViewController {
     var tapToStart: SCNNode!
     var HUD: SCNNode!
     var splashHUD: SCNNode!
+    var downloadingLabel: SCNNode!
     var victoryHands: SCNNode!
     var newBest: SCNNode!
     var bestNode: SCNNode!
@@ -56,6 +57,7 @@ public class GameViewController: UIViewController {
     var scoreValueText: SCNText!
     var levelValueText: SCNText!
     var highScoreValueText: SCNText!
+    var downloadingLabelText: SCNText!
     
     var spawnTime: TimeInterval = 0
     var scoreNodeInitialPosition : SCNVector3!
@@ -78,6 +80,9 @@ public class GameViewController: UIViewController {
     var digitsToAdd = 0
     var digitsString = ""
     var scoreString = ""
+    
+    let iCloudStore = NSUbiquitousKeyValueStore.default
+    let highScoreKey = "highScore"
     
     var lostScreenisShowed = false
     
@@ -109,6 +114,7 @@ public class GameViewController: UIViewController {
         setupSounds()
         setupPositions()
         setupActions()
+        setupObservers()
         loadHighScore()
         startSplashScreen()
     }
@@ -226,25 +232,26 @@ public class GameViewController: UIViewController {
     }
     
     func setupText() {
-        let livesLabelText = livesLabel.geometry as? SCNText
+        downloadingLabelText = downloadingLabel.geometry as? SCNText
+//        let livesLabelText = livesLabel.geometry as? SCNText
 //        livesLabelText?.font = UIFont.systemFont(ofSize: 24, weight: .black).setItalicFnc()
         livesLeftLabelText = livesLeftLabel.geometry as? SCNText
 //        livesLeftLabelText.font = UIFont.systemFont(ofSize: 36, weight: .black).setItalicFnc()
         gameOverLabelText = gameOverLabel.geometry as? SCNText
 //        gameOverLabelText.font = UIFont.systemFont(ofSize: 14, weight: .black).setItalicFnc()
-        let tapToStartText = tapToStart.geometry as? SCNText
+//        let tapToStartText = tapToStart.geometry as? SCNText
 //        tapToStartText?.font = UIFont.systemFont(ofSize: 9, weight: .black).setItalicFnc()
-        let bestNodeText = bestNode.geometry as? SCNText
+//        let bestNodeText = bestNode.geometry as? SCNText
 //        bestNodeText!.font = UIFont.systemFont(ofSize: 9, weight: .black).setItalicFnc()
         highScoreValueText = highScoreValue.geometry as? SCNText
 //        highScoreValueText.font = UIFont.systemFont(ofSize: 9, weight: .black)
         scoreValueText = scoreValue.geometry as? SCNText
 //        scoreValueText.font = UIFont.systemFont(ofSize: 8, weight: .regular)
-        let scoreSignText = scoreSign.geometry as? SCNText
+//        let scoreSignText = scoreSign.geometry as? SCNText
 //        scoreSignText?.font = UIFont.systemFont(ofSize: 24, weight: .black).setItalicFnc()
-        let newBestText = newBest.geometry as? SCNText
+//        let newBestText = newBest.geometry as? SCNText
 //        newBestText!.font = UIFont.systemFont(ofSize: 7, weight: .black).setItalicFnc()
-        let levelNodeText = levelNode.geometry as? SCNText
+//        let levelNodeText = levelNode.geometry as? SCNText
 //        levelNodeText!.font = UIFont.systemFont(ofSize: 24, weight: .black).setItalicFnc()
         levelValueText = levelValue.geometry as? SCNText
 //        levelValueText.font = UIFont.systemFont(ofSize: 24, weight: .black).setItalicFnc()
@@ -278,6 +285,7 @@ public class GameViewController: UIViewController {
         scnView.pointOfView = verticalCameraNode
         HUD = gameScene.rootNode.childNode(withName: "HUD", recursively: true)!
         splashHUD = gameScene.rootNode.childNode(withName: "splashHUD", recursively: true)!
+        downloadingLabel = gameScene.rootNode.childNode(withName: "Downloading your highscore", recursively: true)!
         block = gameScene.rootNode.childNode(withName: "iceBlock", recursively: true)!
         blockWithHole = gameScene.rootNode.childNode(withName: "iceBlockWithHole", recursively: true)!
         
@@ -320,6 +328,26 @@ public class GameViewController: UIViewController {
         let shrink = SCNAction.scale(by: 0.909, duration: 0.2)
         pulseAction = SCNAction.sequence([enlarge, shrink])
         pulseForeverAction = SCNAction.repeatForever(pulseAction)
+    }
+    
+    func setupObservers() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(iCloudDidChange(_:)),
+            name: NSUbiquitousKeyValueStore.didChangeExternallyNotification,
+            object: iCloudStore
+        )
+        
+        iCloudStore.synchronize() // forcing sychronization with iCloud
+    }
+    
+    @objc func iCloudDidChange(_ notification: Notification) {
+        // updating highscore after iCloud received a new value
+        loadHighScore()
+        
+        DispatchQueue.main.async {
+            self.downloadingLabel.runAction(self.fadeOut)
+        }
     }
     
     private func spawnShape() {
@@ -416,18 +444,20 @@ public class GameViewController: UIViewController {
     
     // Loads the high score from UserDefaults
     func loadHighScore() {
-        if let savedHighScore = UserDefaults.standard.value(forKey: "highScore") as? Int {
-            highScore = savedHighScore
-            highScoreValueText.string = String(format: "%05d", highScore)
-            bestNode.isHidden = false
-        }
+        let storedValue = iCloudStore.longLong(forKey: highScoreKey)
+        highScore = Int(storedValue)
+        highScoreValueText.string = String(format: "%05d", highScore)
+        bestNode.isHidden = false
     }
     
     // Saves a new high score to UserDefaults
     func saveHighScoreIfNeeded() {
         if score > highScore {
             highScore = score
-            UserDefaults.standard.setValue(highScore, forKey: "highScore")
+            
+            iCloudStore.set(highScore, forKey: highScoreKey)
+            iCloudStore.synchronize() // Force push to iCloud
+            
             highScoreValueText.string = String(format: "%05d", highScore)
         }
     }
@@ -464,6 +494,14 @@ public class GameViewController: UIViewController {
         splashHUD.isHidden = false
         splashHUD.runAction(SCNAction.fadeIn(duration: 0.8))
         tapToStart.parent!.runAction(pulseForeverAction)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            if self.highScore == 0 {
+                print("No high score found, loading from fallback")
+                self.loadHighScore() // fallback load
+            }
+            self.downloadingLabel.runAction(self.fadeOut)
+        }
     }
     
     func startGame() {

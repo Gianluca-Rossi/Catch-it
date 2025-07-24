@@ -8,38 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		990C3C3522490AD90032866D /* SpawnPositions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990C3C3422490AD90032866D /* SpawnPositions.swift */; };
-		9942701122483AD6002E7EA1 /* AnimalsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942701022483AD6002E7EA1 /* AnimalsInfo.swift */; };
-		9942701322483FB5002E7EA1 /* AnimalsInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942701222483FB5002E7EA1 /* AnimalsInfoCollectionViewCell.swift */; };
-		9942701522484178002E7EA1 /* AnimalsInfoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942701422484178002E7EA1 /* AnimalsInfoCollectionViewController.swift */; };
-		9942701722484360002E7EA1 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942701622484360002E7EA1 /* InfoViewController.swift */; };
 		99427019224852C8002E7EA1 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99427018224852C8002E7EA1 /* Game.storyboard */; };
 		994B965E224690EE00D107B1 /* ResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994B965D224690EE00D107B1 /* ResourceLoader.swift */; };
-		998638962247AEEF0097B4E2 /* AnimalsInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 998638952247AEEF0097B4E2 /* AnimalsInfo.storyboard */; };
 		9987F576223D8B15005BAE54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9987F575223D8B15005BAE54 /* AppDelegate.swift */; };
 		9987F578223D8B15005BAE54 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 9987F577223D8B15005BAE54 /* art.scnassets */; };
 		9987F57A223D8B15005BAE54 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9987F579223D8B15005BAE54 /* GameViewController.swift */; };
 		9987F57F223D8B16005BAE54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9987F57E223D8B16005BAE54 /* Assets.xcassets */; };
-		9987F582223D8B16005BAE54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9987F580223D8B16005BAE54 /* LaunchScreen.storyboard */; };
 		9987F58A223DA861005BAE54 /* EnemyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9987F589223DA861005BAE54 /* EnemyType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		990C3C3422490AD90032866D /* SpawnPositions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpawnPositions.swift; sourceTree = "<group>"; };
-		9942701022483AD6002E7EA1 /* AnimalsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalsInfo.swift; sourceTree = "<group>"; };
-		9942701222483FB5002E7EA1 /* AnimalsInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalsInfoCollectionViewCell.swift; sourceTree = "<group>"; };
-		9942701422484178002E7EA1 /* AnimalsInfoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalsInfoCollectionViewController.swift; sourceTree = "<group>"; };
-		9942701622484360002E7EA1 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		99427018224852C8002E7EA1 /* Game.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
 		994B965D224690EE00D107B1 /* ResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoader.swift; sourceTree = "<group>"; };
-		998638952247AEEF0097B4E2 /* AnimalsInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AnimalsInfo.storyboard; sourceTree = "<group>"; };
 		9987F572223D8B15005BAE54 /* Catch it.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Catch it.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9987F575223D8B15005BAE54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9987F577223D8B15005BAE54 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		9987F579223D8B15005BAE54 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		9987F57E223D8B16005BAE54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		9987F581223D8B16005BAE54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9987F583223D8B16005BAE54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9987F589223DA861005BAE54 /* EnemyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyType.swift; sourceTree = "<group>"; };
+		C521DCB12E3225A6005819B3 /* Catch it.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Catch it.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,20 +69,15 @@
 		9987F574223D8B15005BAE54 /* Catch it */ = {
 			isa = PBXGroup;
 			children = (
+				C521DCB12E3225A6005819B3 /* Catch it.entitlements */,
 				9987F575223D8B15005BAE54 /* AppDelegate.swift */,
 				9987F577223D8B15005BAE54 /* art.scnassets */,
 				9987F579223D8B15005BAE54 /* GameViewController.swift */,
 				990C3C3322490AAE0032866D /* Model */,
 				99427018224852C8002E7EA1 /* Game.storyboard */,
-				998638952247AEEF0097B4E2 /* AnimalsInfo.storyboard */,
-				9942701622484360002E7EA1 /* InfoViewController.swift */,
-				9942701422484178002E7EA1 /* AnimalsInfoCollectionViewController.swift */,
-				9942701222483FB5002E7EA1 /* AnimalsInfoCollectionViewCell.swift */,
-				9942701022483AD6002E7EA1 /* AnimalsInfo.swift */,
 				994B965D224690EE00D107B1 /* ResourceLoader.swift */,
 				9987F589223DA861005BAE54 /* EnemyType.swift */,
 				9987F57E223D8B16005BAE54 /* Assets.xcassets */,
-				9987F580223D8B16005BAE54 /* LaunchScreen.storyboard */,
 				9987F583223D8B16005BAE54 /* Info.plist */,
 			);
 			path = "Catch it";
@@ -159,8 +143,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9987F578223D8B15005BAE54 /* art.scnassets in Resources */,
-				998638962247AEEF0097B4E2 /* AnimalsInfo.storyboard in Resources */,
-				9987F582223D8B16005BAE54 /* LaunchScreen.storyboard in Resources */,
 				99427019224852C8002E7EA1 /* Game.storyboard in Resources */,
 				9987F57F223D8B16005BAE54 /* Assets.xcassets in Resources */,
 			);
@@ -173,12 +155,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9942701522484178002E7EA1 /* AnimalsInfoCollectionViewController.swift in Sources */,
 				9987F57A223D8B15005BAE54 /* GameViewController.swift in Sources */,
-				9942701122483AD6002E7EA1 /* AnimalsInfo.swift in Sources */,
 				9987F576223D8B15005BAE54 /* AppDelegate.swift in Sources */,
-				9942701722484360002E7EA1 /* InfoViewController.swift in Sources */,
-				9942701322483FB5002E7EA1 /* AnimalsInfoCollectionViewCell.swift in Sources */,
 				994B965E224690EE00D107B1 /* ResourceLoader.swift in Sources */,
 				990C3C3522490AD90032866D /* SpawnPositions.swift in Sources */,
 				9987F58A223DA861005BAE54 /* EnemyType.swift in Sources */,
@@ -186,17 +164,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		9987F580223D8B16005BAE54 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9987F581223D8B16005BAE54 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		9987F584223D8B16005BAE54 /* Debug */ = {
@@ -319,6 +286,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Catch it/Catch it.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 72BH6SBX28;
@@ -343,6 +311,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Catch it/Catch it.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 72BH6SBX28;
